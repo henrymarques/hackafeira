@@ -1,0 +1,121 @@
+.app {
+  /* background-color: #03B2F1; */
+  width: 100%;
+  height: 100%;
+
+  /* padding: 24px 20px; */
+}
+
+.content {
+  height: 100%;
+
+  border-radius: 20px;
+  padding: 20px 100px;
+
+  /* background-color: var(--base); */
+  /* background-color: rgba(0, 0, 0, 0.15); */
+}
+
+.content table {
+  width: 100%;
+
+  max-width: 900px;
+  margin: 0 auto;
+
+  /* color: white; */
+  text-align: center;
+}
+
+.content table td,
+.content table th {
+  width: 200px;
+}
+
+.content table th {
+  /* text-transform: uppercase; */
+  font-size: 1.2rem;
+}
+
+.content table th:first-child {
+  text-align: left;
+}
+
+.content table td:first-child {
+  text-align: left;
+}
+
+.searchInput {
+  display: flex;
+  margin-bottom: 16px;
+}
+
+.searchInput button {
+  background: var(--base);
+  color: white;
+  /* border: 2px solid var(--base); */
+  border: 0;
+  border-radius: 8px;
+  padding: 5px 12px;
+  cursor: pointer;
+}
+
+.searchInput button:hover {
+  opacity: 60%;
+}
+
+.searchInput input {
+  width: 100%;
+  margin-right: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  padding: 5px 12px;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+
+  justify-content: space-between;
+  width: 100%;
+  max-width: 200px;
+  margin: 16px auto 0 auto;
+  /* margin: 24px; */
+}
+
+.pagination .paginationButton {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  /* margin-left: 12px; */
+
+  border: 0;
+  padding: 0;
+  border-radius: 50%;
+
+  cursor: pointer;
+  border: 2px solid var(--base);
+  background-color: white;
+
+  font-size: 0.75rem;
+  color: #0397cd;
+  font-weight: 900;
+
+  width: 1.88rem;
+  height: 1.88rem;
+}
+
+.pagination .paginationButton:hover {
+  opacity: 50%;
+  transition: 0.1s all;
+}
+
+.pagination .paginationButtonActive {
+  background-color: var(--base);
+  color: white;
+}
+
+.pagination .paginationButtonDisabled {
+  /* opacity: 50%; */
+  display: none;
+}

@@ -28,7 +28,8 @@ function App() {
     pageSize: 15,
   } as Omit<Data, 'content'>)
   const [products, setProducts] = useState([] as Product[])
-  const [filteredProducts, setFilteredProducts] = useState([] as Product[])
+  // const [filteredProducts, setFilteredProducts] = useState([] as Product[])
+  const [search, setSearch] = useState('')
   const [query, setQuery] = useState('')
 
   const formatDate = (dateString: string) => {
@@ -36,23 +37,21 @@ function App() {
     return new Intl.DateTimeFormat('pt-BR').format(date)
   }
 
-  const search = (query: string): void => {
-    setFilteredProducts(products.filter((i) => i.ncm.includes(query)))
-  }
-
   useEffect(() => {
     async function loadProducts() {
       const response = await api.get<Data>(
-        `/api/product/store/2?page=${pagination.pageNumber}&pageSize=${pagination.pageSize}`
+        `/api/product/store/2?page=${pagination.pageNumber}&pageSize=${
+          pagination.pageSize
+        }${search && `&query=${search}`}`
       )
       if (response.data) {
         setPagination({ ...response.data })
         setProducts(response.data.content)
-        setFilteredProducts(response.data.content)
+        // setFilteredProducts(response.data.content)
       }
     }
     loadProducts()
-  }, [pagination.pageNumber, pagination.pageSize])
+  }, [search, pagination.pageNumber, pagination.pageSize])
 
   return (
     <>
@@ -61,7 +60,7 @@ function App() {
         <div className={styles.content}>
           <div className={styles.searchInput}>
             <input value={query} onChange={(e) => setQuery(e.target.value)} />
-            <button onClick={() => search(query)}>Pesquisar</button>
+            <button onClick={() => setSearch(query)}>Pesquisar</button>
           </div>
           <table>
             <thead>
@@ -72,7 +71,7 @@ function App() {
               </tr>
             </thead>
             <tbody>
-              {filteredProducts.map((item) => (
+              {products.map((item) => (
                 <tr key={`${item.ncm}${item.data_vencimento}`}>
                   <td>{item.ncm}</td>
                   <td>{item.qtd_produto}</td>
